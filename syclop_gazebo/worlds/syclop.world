@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <!--<include>
+      <uri>model://ground_plane</uri>
+    </include>-->
+    <!--<include> removed- sun light with cylinder dea creates wired shadows
+      <uri>model://sun</uri>
+    </include>-->
+    <gui>
+        <camera name="user_camera">
+            <pose>0.0 -1.6 1.0 0.0 0.275 1.57</pose>
+        </camera>
+    </gui>
+    
+    <include>
+      <uri>model://single_edge2</uri>
+      <pose>0.0 0.4 0.55 1.57 0 0</pose>
+    </include>
+
+   <light name='user_point_light_0' type='point'>
+      <pose frame=''>0 0 5 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>1</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+
+   <physics type='ode'>
+       <max_step_size>0.001</max_step_size>
+       <real_time_factor>1.0</real_time_factor>
+       <real_time_update_rate>1000</real_time_update_rate>
+       <gravity>0 0 -9.8</gravity>
+    </physics>
+  </world>
+</sdf>

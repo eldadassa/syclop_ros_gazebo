@@ -1,0 +1,7 @@
+<launch>
+
+  <!-- Load RQT with a pre-setup GUI for syclop controls from a perspective file  -->
+  <node name="syclop_rqt" pkg="rqt_gui" type="rqt_gui" respawn="false"
+	output="screen" args="--perspective-file $(find syclop_control)/launch/syclop_rqt.perspective"/>
+
+</launch>
