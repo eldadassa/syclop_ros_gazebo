@@ -1,0 +1,10 @@
+syclop- Ros-Gazebo setup:
+
+in every new terminal:
+source ~/ros-gazebo.env
+
+for each cmd open a new terminal source the env file and run the cmd:
+1. roslaunch syclop_gazebo syclop_world.launch
+2. roslaunch syclop_control syclop_control.launch
+3. roslaunch syclop_control syclop_rqt.launch (optional)
+4. roslaunch syclop_gazebo gazebo_dvs_renderer.launch (optional)
