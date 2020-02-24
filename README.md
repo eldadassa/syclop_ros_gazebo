@@ -2,11 +2,11 @@
 This repository contains the src files for ros definitions and drivers of syclop as well as gazebo simulation.
 
 ## Dependencies:
-[gazebo_dvs_plugin](https://github.com/HBPNeurorobotics/gazebo_dvs_plugin).
-[RPG DVS ROS](https://github.com/uzh-rpg/rpg_dvs_ros).
-single_edge2 (gazebo model) [TODO: add model to rep].
-ros_control pkg (?)
-...
+* [gazebo_dvs_plugin](https://github.com/HBPNeurorobotics/gazebo_dvs_plugin).
+* [RPG DVS ROS](https://github.com/uzh-rpg/rpg_dvs_ros).
+* single_edge2 (gazebo model) [TODO: add model to rep].
+* ros_control pkg (?)
+* ...
 
 ## Install:
 
