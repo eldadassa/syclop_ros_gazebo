@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<sdf version="1.6">
+<model name="single_edge2">
+  <static>true</static>
+  <link name="link">
+    <visual name="visual1">
+      <pose>0 0 0 0 0 0</pose>
+      <geometry>
+        <mesh>
+          <uri>model://single_edge2/meshes/hollow_cylinder_left_half.dae</uri>
+        </mesh>
+      </geometry>
+      <material> 
+        <ambient>1.0 1.0 1.0 1</ambient>
+        <diffuse>1.0 1.0 1.0 1</diffuse>
+        <specular>0 0 0 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+      <!--<material>Gazebo/White</material>-->
+    </visual>
+    <visual name="visual2">
+      <pose>0 0 0 0 0 0</pose>
+      <geometry>
+        <mesh>
+          <uri>model://single_edge2/meshes/hollow_cylinder_right_half.dae</uri>
+        </mesh>
+      </geometry>
+      <material> 
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0 0 0 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+    </visual>
+  </link>
+</model>
+</sdf>
