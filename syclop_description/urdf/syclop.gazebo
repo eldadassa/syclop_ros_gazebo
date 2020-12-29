@@ -22,12 +22,12 @@
         <camera name='__default__'>
             <pose>0.2 0 0 0 0 0</pose>
             <!--<horizontal_fov>1.0</horizontal_fov>-->
-            <horizontal_fov>0.2</horizontal_fov>
+            <horizontal_fov>2.0</horizontal_fov>
             <image>
                 <!--<width>128</width>
                 <height>128</height>-->
-                <width>32</width>
-                <height>32</height>
+                <width>8</width>
+                <height>4</height>
             </image>
             <clip>
                 <near>0.1</near>
@@ -40,6 +40,7 @@
         <plugin name='camera_controller' filename='libgazebo_dvs_plugin.so'>
             <cameraName>dvs_camera</cameraName>
             <robotNamespace>syclop</robotNamespace>
+            <!--<eventThreshold>15</eventThreshold>-->
             <eventThreshold>15</eventThreshold>
             <cameraInfoTopicName>camera_info</cameraInfoTopicName>
             <eventsTopicName>events</eventsTopicName>
