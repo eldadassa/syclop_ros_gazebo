@@ -9,7 +9,12 @@ This repository contains the src files for ros definitions and drivers of syclop
 
 ## Install:
 
+Deactivate conda
+
 First, follow the instructions in [gazebo_dvs_plugin](https://github.com/HBPNeurorobotics/gazebo_dvs_plugin) to install dvs ros drivers and Gazebo plugin.
+
+install ros_control and ros_contorlles packages:
+sudo apt-get install ros-melodic-ros-control ros-melodic-ros-controllers
 
 Then, clone this package (syclop_description, syclop_control and syclop_gazebo directories) into your workspace (e.g. catkin_ws/src) and rebuild ('catkin build' or 'catkin_make').
 
