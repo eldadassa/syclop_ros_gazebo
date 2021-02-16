@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <gui>
+        <camera name="user_camera">
+            <pose>0.0 -1.6 1.0 0.0 0.275 1.57</pose>
+        </camera>
+    </gui>
+    
+    <include>
+      <uri>model://calibration_plane</uri>
+      <pose>0.0 1.0 0.4 1.57 0.0 0.0 </pose>
+    </include>
+
+    
+   <physics type='ode'>
+       <max_step_size>0.001</max_step_size>
+       <real_time_factor>1.0</real_time_factor>
+       <real_time_update_rate>1000</real_time_update_rate>
+       <gravity>0 0 -9.8</gravity>
+    </physics>
+    <scene>
+	    <shadows>false</shadows>
+	    <ambient>200.0 200.0 200.0 128.0</ambient>
+    </scene>
+  </world>
+</sdf>

@@ -34,7 +34,7 @@
                 <far>5</far>
 	    </clip>
             <!--<save enabled="true">
-		<path>/syclop_RL_SNN/python/tmp</path>
+		<path>/home/bnapp/tmp</path>
 	    </save>-->
         </camera>
         <always_on>1</always_on>

@@ -39,7 +39,7 @@
        <gravity>0 0 -9.8</gravity>
     </physics>
     <scene>
-	    <!--<shadows>1</shadows>-->
+	    <shadows>false</shadows>
 	    <ambient>200.0 200.0 200.0 128.0</ambient>
     </scene>
   </world>
