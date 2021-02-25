@@ -26,7 +26,7 @@
             <image>
                 <!--<width>128</width>
                 <height>128</height>-->
-                <width>8</width>
+                <width>32</width>
                 <height>4</height>
             </image>
             <clip>
@@ -47,6 +47,8 @@
             <eventThreshold>15</eventThreshold>
             <cameraInfoTopicName>camera_info</cameraInfoTopicName>
             <eventsTopicName>events</eventsTopicName>
+            <subsampleFactorX>2</subsampleFactorX>
+            <subsampleFactorY>0</subsampleFactorY>
         </plugin>
     </sensor>
   </gazebo>
