@@ -12,6 +12,16 @@
   </gazebo>
 
   <!-- Link1 -->
+  <gazebo reference="pan_arm_link">
+    <material>Gazebo/White</material>
+  </gazebo> 
+
+  <!-- Link1 -->
+  <gazebo reference="tilt_arm_link">
+    <material>Gazebo/White</material>
+  </gazebo> 
+
+  <!-- Link1 -->
   <gazebo reference="camera_link">
     <material>Gazebo/Red</material>
   </gazebo>

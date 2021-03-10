@@ -33,4 +33,9 @@
     <color rgba="1.0 1.0 1.0 1.0"/>
   </material>
 
+  <material name="cyan">
+    <color rgba="0.0 0.0 0.4 1.0"/>
+  </material>
+
+
 </robot>

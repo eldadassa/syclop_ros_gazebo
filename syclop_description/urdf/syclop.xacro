@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <robot name="syclop" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Constants for robot dimensions -->
-  <xacro:property name="PI" value="3.1415926535897931"/>
+  <!-- Constants for robot dimensions-->
   <xacro:property name="base_mass" value="1" /> <!-- arbitrary value for mass -->
   <xacro:property name="base_width" value="0.5" /> 
   <xacro:property name="base_height" value="0.05" /> 
@@ -12,11 +11,18 @@
   <xacro:property name="pan_base_height" value="0.20" /> 
   <xacro:property name="pan_base_depth" value="0.15" />
   <xacro:property name="pan_arm_mass" value="1" /> <!-- arbitrary value for mass -->
-  <xacro:property name="pan_arm_width" value="0.48" /> 
+  <!--<xacro:property name="pan_arm_width" value="0.48" />-->
   <xacro:property name="pan_arm_height" value="0.1" /> 
   <xacro:property name="pan_arm_depth" value="0.15" />
+  <xacro:property name="tilt_arm_mass" value="1" /> <!-- arbitrary value for mass -->
+  <xacro:property name="tilt_arm_width" value="0.08" /> 
+  <!--<xacro:property name="tilt_arm_height" value="0.3" /> -->
+  <xacro:property name="tilt_arm_depth" value="0.15" />
   <xacro:property name="camera_link" value="0.3" /> <!-- Size of square 'camera' box -->
-  <xacro:property name="axel_offset" value="0.05" /> <!-- Space btw top of bottom link and each joint -->
+  <xacro:property name="axel_offset" value="0.025" /> <!-- Space btw top of bottom link and each joint -->
+
+  <xacro:property name="pan_arm_width" value="${camera_link + tilt_arm_width*2 + axel_offset*2}" />
+  <xacro:property name="tilt_arm_height" value="${camera_link + axel_offset*2}" />
   
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
   <xacro:include filename="$(find syclop)/urdf/syclop.gazebo" />
@@ -109,7 +115,7 @@
       <geometry>
 	<box size="${pan_arm_depth} ${pan_arm_width} ${pan_arm_height}"/>
       </geometry>
-      <material name="white"/>
+      <material name="cyan"/>
     </visual>
 
     <inertial>
@@ -127,22 +133,57 @@
     <child link="pan_arm_link"/>
     <origin xyz="0 0 ${base_height+pan_base_height}" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
-    <!--<limit lower="${-PI/2}" upper="${PI/2}" effort = "1" velocity = "10"/>-->
-    <limit lower="${-PI/2}" upper="${PI/2}" effort = "1" velocity = "50"/>
+    <!--<limit lower="${-pi/2}" upper="${pi/2}" effort = "1" velocity = "10"/>-->
+    <limit lower="${-pi/2}" upper="${pi/2}" effort = "1" velocity = "50"/>
     <!--<limit lower="-1.0" upper="1.0" effort = "1" velocity = "50"/>-->
+  </joint>
+
+<!-- tilt Arm Link -->
+  <link name="tilt_arm_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="${tilt_arm_depth} ${tilt_arm_width} ${tilt_arm_height}"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	<box size="${tilt_arm_depth} ${tilt_arm_width} ${tilt_arm_height}"/>
+      </geometry>
+      <material name="cyan"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="${tilt_arm_mass}"/>
+      <inertia
+	  ixx="${tilt_arm_mass / 12.0 * (tilt_arm_depth*tilt_arm_depth + tilt_arm_height*tilt_arm_height)}" ixy="0.0" ixz="0.0"
+	  iyy="${tilt_arm_mass / 12.0 * (tilt_arm_height*tilt_arm_height + tilt_arm_width*tilt_arm_width)}" iyz="0.0"
+	  izz="${tilt_arm_mass / 12.0 * (tilt_arm_width*tilt_arm_width + tilt_arm_depth*tilt_arm_depth)}"/>
+    </inertial>
+  </link>
+
+  <joint name="pan_arm_tilt_arm_joint" type="fixed">
+    <parent link="pan_arm_link"/>
+    <child link="tilt_arm_link"/>
+    <!--<origin xyz="0 ${-pan_arm_width/2 + tilt_arm_width/2} ${base_height+pan_base_height}" rpy="0 0 0"/>-->
+    <origin xyz="0 ${-pan_arm_width/2 + tilt_arm_width/2} ${pan_arm_height + tilt_arm_height/2}" rpy="0 0 0"/>
+    <axis xyz="0 0 0"/>
   </joint>
 
   <!-- Camera -->
   <link name="camera_link">
     <collision>
-      <origin xyz="0 0 ${camera_link/2 + pan_arm_height}" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
 	<box size="${camera_link} ${camera_link} ${camera_link}"/>
       </geometry>
     </collision>
 
     <visual>
-      <origin xyz="0 0 ${camera_link/2 + pan_arm_height}" rpy="0 0 0"/>
+      <origin xyz="0 ${camera_link/2 + tilt_arm_width/2 + axel_offset} 0" rpy="0 0 0"/>
       <geometry>
 	<box size="${camera_link/2} ${camera_link} ${camera_link}"/>
       </geometry>
@@ -150,7 +191,7 @@
     </visual>
 
     <visual>
-      <origin xyz="0.15 0.0 ${camera_link/2 + pan_arm_height}" rpy="${pi/2} 0 ${-pi/2}"/>
+      <origin xyz="0.15 ${camera_link/2 + tilt_arm_width/2 + axel_offset} 0" rpy="${pi/2} 0 ${-pi/2}"/>
       <geometry>
 	<cylinder length="0.3" radius="0.1"/>
       </geometry>
@@ -158,18 +199,21 @@
     </visual>
 
     <inertial>
-      <mass value="1e-5" />
-      <origin xyz="0 0 ${camera_link/2 + pan_arm_height}" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      <mass value="1.0" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${1.0 / 12.0 * (2*camera_link*camera_link)}" ixy="0.0" ixz="0.0"
+	       iyy="${1.0 / 12.0 * (2*camera_link*camera_link)}" iyz="0.0"
+	       izz="${1.0 / 12.0 * (2*camera_link*camera_link)}"/>
     </inertial>
   </link>
 
-  <joint name="camera_joint" type="fixed">
+  <joint name="camera_joint" type="revolute">
     <axis xyz="0 1 0" />
     <!--<origin xyz="0 0 ${base_height+pan_base_height + pan_arm_height}" rpy="0 0 0"/>-->
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="pan_arm_link"/>
+    <parent link="tilt_arm_link"/>
     <child link="camera_link"/>
+    <limit lower="${-pi}" upper="${pi/4}" effort = "1" velocity = "50"/>
   </joint>
 
   <!-- generate an optical frame http://www.ros.org/reps/rep-0103.html#suffix-frames
@@ -192,6 +236,17 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="pan_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tilt_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="camera_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="tilt_motor">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
