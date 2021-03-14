@@ -32,7 +32,7 @@
         <camera name='__default__'>
             <pose>0.2 0 0 0 0 0</pose>
             <!--<horizontal_fov>1.0</horizontal_fov>-->
-            <horizontal_fov>2.0</horizontal_fov>
+            <horizontal_fov>1.0</horizontal_fov>
             <image>
                 <!--<width>128</width>
                 <height>128</height>-->
@@ -40,8 +40,8 @@
                 <height>4</height>
             </image>
             <clip>
-                <near>0.1</near>
-                <far>5</far>
+                <near>0.05</near>
+                <far>10</far>
 	    </clip>
             <!--<save enabled="true">
 		<path>/home/bnapp/tmp</path>

@@ -29,7 +29,7 @@
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.1 0.1 0.1</size>
+              <size>0.1 0.1 1.0</size>
             </box>
           </geometry>
           <material> 
@@ -56,16 +56,16 @@
         <velocity_factor>0.5</velocity_factor>
 
         <!-- Time, in seconds, between new velocities -->
-        <update_period>5</update_period>
+        <update_period>2.5</update_period>
 
         <!-- Clamp the Z velocity value to zero. You can also clamp x and
              y values -->
-        <!--<min_z>0</min_z>
-        <max_z>0</max_z>-->
+        <min_z>0</min_z>
+        <max_z>0</max_z>
 
         <!-- Clamp object position-->
-        <min_x_pos>-1</min_x_pos>
-        <max_x_pos>1</max_x_pos>
+        <min_x_pos>-2</min_x_pos>
+        <max_x_pos>2</max_x_pos>
         <min_y_pos>1</min_y_pos>
         <max_y_pos>3</max_y_pos>
         <min_z_pos>-0.1</min_z_pos>
