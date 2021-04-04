@@ -36,8 +36,8 @@
             <image>
                 <!--<width>128</width>
                 <height>128</height>-->
-                <width>32</width>
-                <height>4</height>
+                <width>16</width>
+                <height>16</height>
             </image>
             <clip>
                 <near>0.05</near>
@@ -57,7 +57,7 @@
             <eventThreshold>15</eventThreshold>
             <cameraInfoTopicName>camera_info</cameraInfoTopicName>
             <eventsTopicName>events</eventsTopicName>
-            <subsampleFactorX>2</subsampleFactorX>
+            <subsampleFactorX>0</subsampleFactorX>
             <subsampleFactorY>0</subsampleFactorY>
         </plugin>
     </sensor>
